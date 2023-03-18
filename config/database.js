@@ -1,8 +1,11 @@
+// env
+const dotenv = require('dotenv')
+dotenv.config();
 //use mysql database
 const mysql = require('mysql');
 
 const db = mysql.createConnection({
-    host: 'localhost',
+    host: process.env.MYSQL_HOST,
     user: 'root',
     password: '',
     database: 'marketplace'
