@@ -4,6 +4,6 @@ WORKDIR /usr/src/app/backend
 
 COPY package*.json ./
 
-run npm install
+run npm install --force
 
 CMD node index.js
