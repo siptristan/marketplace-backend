@@ -28,7 +28,7 @@ module.exports = {
             sql = modelCheckout.insertCheckout(req.body.ProductID, req.body.UserID, req.body.TotalBuy, req.body.TotalPrice)
             let sqlResults = db.query(sql, (err, result) => {
                 if(err) throw err;
-                return res.json(result);
+                return res.json(req.body);
             })
         }
     },
