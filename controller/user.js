@@ -66,6 +66,7 @@ module.exports = {
     },
     register: (req, res) => {
         const { Name, Email, Password, Avatar } = req.body
+        console.log(req.body)
         const saltRounds = 10
         let hashPass = ''
         bcrypt
