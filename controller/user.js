@@ -63,5 +63,9 @@ module.exports = {
             })
         }
 
+    },
+    register: (req, res) => {
+        const { Username, Password } = req.body
+        console.log(Username, Password)
     }
 }
