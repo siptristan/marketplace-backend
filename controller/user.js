@@ -65,7 +65,32 @@ module.exports = {
 
     },
     register: (req, res) => {
-        const { Username, Password } = req.body
-        console.log(Username, Password)
+        const { Name, Email, Password, Avatar } = req.body
+        const saltRounds = 10
+        let hashPass = ''
+        bcrypt
+        .genSalt(saltRounds)
+        .then(salt => {
+            return bcrypt.hash(Password, salt)
+        })
+        .then(hash => {
+            hashPass = hash
+        })
+        .catch(err => console.error(err.message))
+
+        let checkUser = model.user(Email)
+        let register = model.register(Name, Email, hashPass, Avatar)
+        let check = db.query(checkUser, (err, result) => {
+            if(err) throw err;
+            if (result.length > 0) {
+                return res.json({ success: false, message: `Email ${Email} Sudah terdaftar!` })
+            } else {
+                let query = db.query(register, (err, result) => {
+                    if(err) throw err;
+                    return res.json({ success: true, result })
+                })
+            }
+        })
+
     }
 }
