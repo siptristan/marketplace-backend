@@ -65,7 +65,10 @@ module.exports = {
 
     },
     register: (req, res) => {
-        const { Name, Email, Password, Avatar } = req.body
+        const Name = req.body.Name
+        const Email = req.body.Email
+        const Password = req.body.Password
+        const Avatar = req.body.Avatar
         console.log(req.body)
         const saltRounds = 10
         let hashPass = ''
