@@ -67,7 +67,6 @@ module.exports = {
     register: (req, res) => {
         const Name = req.body.Name
         const Email = req.body.Email
-        const Password = req.body.Password
         const Avatar = req.body.Avatar
         console.log(req.body)
         const saltRounds = 10
@@ -75,26 +74,23 @@ module.exports = {
         bcrypt
         .genSalt(saltRounds)
         .then(salt => {
-            return bcrypt.hash(Password, salt)
+            return bcrypt.hash(req.body.Password, salt)
         })
-        .then(hash => {
-            hashPass = hash
+        .then(Hash => {
+            let checkUser = model.user(Email)
+            let register = model.register(Name, Email, Hash, Avatar)
+            let check = db.query(checkUser, (err, result) => {
+                if(err) throw err;
+                if (result.length > 0) {
+                    return res.json({ success: false, message: `Email ${Email} Sudah terdaftar!` })
+                } else {
+                    let query = db.query(register, (err, result) => {
+                        if(err) throw err;
+                        return res.json({ success: true, result })
+                    })
+                }
+            })
         })
         .catch(err => console.error(err.message))
-
-        let checkUser = model.user(Email)
-        let register = model.register(Name, Email, hashPass, Avatar)
-        let check = db.query(checkUser, (err, result) => {
-            if(err) throw err;
-            if (result.length > 0) {
-                return res.json({ success: false, message: `Email ${Email} Sudah terdaftar!` })
-            } else {
-                let query = db.query(register, (err, result) => {
-                    if(err) throw err;
-                    return res.json({ success: true, result })
-                })
-            }
-        })
-
     }
 }
