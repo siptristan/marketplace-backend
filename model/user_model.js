@@ -2,7 +2,7 @@ module.exports = {
     user: (email) => {
         return `SELECT * FROM users WHERE Email = '${email}' LIMIT 1`
     },
-    register: (email, name, password, avatar) => {
+    register: (name, email, password, avatar) => {
         return `INSERT INTO users(Name, Email, Password, Avatar) VALUES('${name}', '${email}', '${password}', '${avatar}')`
     }
 }
