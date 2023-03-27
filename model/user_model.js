@@ -4,5 +4,8 @@ module.exports = {
     },
     register: (name, email, password, avatar) => {
         return `INSERT INTO users(Name, Email, Password, Avatar) VALUES('${name}', '${email}', '${password}', '${avatar}')`
+    },
+    avatar: (img, UserID) => {
+        return `UPDATE users SET Avatar = '${img}' WHERE UserID = ${UserID}`
     }
 }

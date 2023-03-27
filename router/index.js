@@ -25,5 +25,6 @@ router.post('/api/auth/login', auth.login)
 router.get('/api/auth/validate', auth.validateToken)
 router.get('/api/auth/user', auth.getUser)
 router.post('/api/auth/register', auth.register)
+router.post('/api/update-avatar', auth.updateAvatar)
 
 module.exports = router

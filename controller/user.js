@@ -92,5 +92,16 @@ module.exports = {
             })
         })
         .catch(err => console.error(err.message))
+    },
+    updateAvatar: (req, res) => {
+        const img = req.body.Avatar
+        const id = req.body.UserID
+        if (img !== '' || img !== null || img !== undefined) {
+            let update = model.avatar(img, id)
+            let query = db.query(update, (err, result) => {
+                if(err) throw err;
+                return res.json(result)
+            })
+        }
     }
 }
