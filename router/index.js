@@ -24,6 +24,6 @@ router.get('/api/get-all-checkout', checkout.checkoutAll)
 router.post('/api/auth/login', auth.login)
 router.get('/api/auth/validate', auth.validateToken)
 router.get('/api/auth/user', auth.getUser)
-router.post('/api/register', auth.register)
+router.post('/api/auth/register', auth.register)
 
 module.exports = router

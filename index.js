@@ -30,7 +30,7 @@ let PORT = process.env.PORT || 5000;
 
 app.set('view engine', 'hbs');
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors({
   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
   origin: '*'
