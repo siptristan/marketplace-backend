@@ -8,6 +8,7 @@ module.exports = {
         // let productId = [];
 
         if (Array.isArray(req.body.ProductID)) {
+            console.log(req,body.ProductID)
             for (let i = 0; i < req.body.ProductID.length; i++) {
                 let cart = modelCart.cart(req.body.UserID)
                 let cartData = db.query(cart, (err, result) => {
@@ -17,7 +18,7 @@ module.exports = {
                             sql = modelCheckout.insertCheckout(req.body.ProductID[i], req.body.UserID, item.TotalProduct, item.TotalPrice)
                             let sqlResults = db.query(sql, (err, results) => {
                                 if(err) throw err;
-                                return true;
+                                // return true;
                             })
                         }
                     })

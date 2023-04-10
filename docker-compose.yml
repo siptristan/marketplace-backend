@@ -2,9 +2,7 @@ version: "3.7"
 services:
 
   marketplace-backend:
-    build:
-      context: ./
-      dockerfile: Dockerfile
+    image: sipgalahad/marketplace:1.0.0
     ports:
       - "5000:5000"
     container_name: marketplace_backend
@@ -15,7 +13,17 @@ services:
       - mynetwork
     extra_hosts:
       - "host.docker.internal:host-gateway"
-
+  nginx:
+    image: nginx
+    container_name: nginx
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on:
+      - marketplace-backend
 networks:
   mynetwork:
     driver: bridge
