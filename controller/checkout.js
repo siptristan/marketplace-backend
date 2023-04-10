@@ -8,20 +8,24 @@ module.exports = {
         // let productId = [];
 
         if (Array.isArray(req.body.ProductID)) {
-            console.log(req,body.ProductID)
+            console.log(req.body.ProductID)
             for (let i = 0; i < req.body.ProductID.length; i++) {
                 let cart = modelCart.cart(req.body.UserID)
                 let cartData = db.query(cart, (err, result) => {
-                    if(err) throw err;
-                    result.map((item) => {
-                        if (item.ProductID === req.body.ProductID[i] && item.UserID === req.body.UserID) {
-                            sql = modelCheckout.insertCheckout(req.body.ProductID[i], req.body.UserID, item.TotalProduct, item.TotalPrice)
-                            let sqlResults = db.query(sql, (err, results) => {
-                                if(err) throw err;
-                                // return true;
-                            })
-                        }
-                    })
+                    if(err) {
+                        throw err;
+                    } else {
+                        console.log(result)
+                        result.map((item) => {
+                            if (item.ProductID === req.body.ProductID[i] && item.UserID === req.body.UserID) {
+                                sql = modelCheckout.insertCheckout(req.body.ProductID[i], req.body.UserID, item.TotalProduct, item.TotalPrice)
+                                let sqlResults = db.query(sql, (err, results) => {
+                                    if(err) throw err;
+                                    // return true;
+                                })
+                            }
+                        })
+                    }
                 })
             }
             return res.json(req.body)
