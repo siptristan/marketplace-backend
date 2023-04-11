@@ -8,14 +8,12 @@ module.exports = {
         // let productId = [];
 
         if (Array.isArray(req.body.ProductID)) {
-            console.log(req.body.ProductID)
             for (let i = 0; i < req.body.ProductID.length; i++) {
                 let cart = modelCart.cart(req.body.UserID)
                 let cartData = db.query(cart, (err, result) => {
                     if(err) {
                         throw err;
                     } else {
-                        console.log(result)
                         result.map((item) => {
                             if (item.ProductID === req.body.ProductID[i] && item.UserID === req.body.UserID) {
                                 sql = modelCheckout.insertCheckout(req.body.ProductID[i], req.body.UserID, item.TotalProduct, item.TotalPrice)
@@ -49,6 +47,38 @@ module.exports = {
         let query = db.query(sql, (error, result) => {
             if(error) throw error;
             return res.json(result)
+        })
+    },
+    uploadPaymentProof: (req, res) => {
+        const base64Img = require('base64-img');
+
+        const base64Data = req.body.base64Img;
+        const destpath = 'public/images';
+        const filename = `${req.body.UserID}_${req.body.date}`;
+        const filepath = base64Img.imgSync(base64Data, destpath, filename);
+        const path = filepath.split(/\\/)
+        const pathString = `${path[0]}/${path[1]}/${path[2]}`
+        
+        const data = {
+            PaymentProof: base64Data
+        }
+        let sql = model.updatePaymentProof(data)
+        let queryUpload = db.query(sql, (err, results) => {
+            if (err) {
+                res.json({ success: false, message: err });
+            } else {
+                return res.json({success: true, message: 'success'})
+            }
+        })
+    },
+    confirmPayment: (req, res) => {
+        let sql = model.confirmPayment(req.body.CheckoutID)
+        let query = db.query(sql, (err, results) => {
+            if (err) {
+                res.json({ success: false, message: err });
+            } else {
+                return res.json({success: true, message: 'success'})
+            }
         })
     }
 }

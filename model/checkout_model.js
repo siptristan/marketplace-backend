@@ -6,9 +6,15 @@ module.exports = {
         return `SELECT c.*, p.Title, p.Image, p.Price FROM checkouts c JOIN products p ON c.ProductID = p.ProductID WHERE c.UserID = ${UserID} AND c.ProductID IN (${ProductID}) AND c.IsDeleted = 0`;
     },
     listCheckout: (UserID) => {
-        return `SELECT c.*, p.Title, p.Image, p.Price, p.Stock, c2.CategoryName FROM checkouts c JOIN products p ON c.ProductID = p.ProductID JOIN categories c2 ON p.CategoryID = c2.CategoryID WHERE c.UserID = ${UserID} AND c.IsDeleted = 0`
+        return `SELECT c.*, p.Title, p.Image, p.Price, c2.CategoryName FROM checkouts c JOIN products p ON c.ProductID = p.ProductID JOIN categories c2 ON p.CategoryID = c2.CategoryID WHERE c.UserID = ${UserID} AND c.IsDeleted = 0`
     },
     removeCheckout: (UserID, ProductID) => {
 
+    },
+    updatePaymentProof: (data) => {
+        return `UPDATE checkouts SET PaymentProof = ${data.PaymentProof} WHERE CheckoutID = ${data.CheckoutID}`
+    },
+    confrimPayment: (id) => {
+        return `UPDATE checkouts SET IsPaid = 1 WHERE CheckoutID = ${id}`
     }
 }
