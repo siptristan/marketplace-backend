@@ -1,6 +1,7 @@
 const db = require('../config/database')
 const modelCart = require('../model/cart_model')
 const modelCheckout = require('../model/checkout_model')
+const base64Img = require('base64-img');
 
 module.exports = {
     addCheckout: async(req, res) => {
@@ -50,8 +51,6 @@ module.exports = {
         })
     },
     uploadPaymentProof: (req, res) => {
-        const base64Img = require('base64-img');
-
         const base64Data = req.body.base64Img;
         const destpath = 'public/images';
         const filename = `${req.body.UserID}_${req.body.date}`;
