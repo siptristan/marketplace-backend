@@ -1,7 +1,7 @@
 const db = require('../config/database')
 const modelCart = require('../model/cart_model')
 const modelCheckout = require('../model/checkout_model')
-const base64Img = require('base64-img');
+const base64Img = require('../node_modules/base64-img');
 
 module.exports = {
     addCheckout: async(req, res) => {
