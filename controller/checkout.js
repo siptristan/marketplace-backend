@@ -60,7 +60,8 @@ module.exports = {
         const pathString = `${path[0]}/${path[1]}/${path[2]}`
         
         const data = {
-            PaymentProof: base64Data
+            PaymentProof: base64Data,
+            CheckoutID: req.body.CheckoutID
         }
         let sql = model.updatePaymentProof(data)
         let queryUpload = db.query(sql, (err, results) => {
