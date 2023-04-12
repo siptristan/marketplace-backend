@@ -64,7 +64,7 @@ module.exports = {
             PaymentProof: base64Data,
             CheckoutID: req.body.CheckoutID
         }
-        let sql = model.updatePaymentProof(data)
+        let sql = modelCheckout.updatePaymentProof(data)
         let queryUpload = db.query(sql, (err, results) => {
             if (err) {
                 res.json({ success: false, message: err });
@@ -74,7 +74,7 @@ module.exports = {
         })
     },
     confirmPayment: (req, res) => {
-        let sql = model.confirmPayment(req.body.CheckoutID)
+        let sql = modelCheckout.confirmPayment(req.body.CheckoutID)
         let query = db.query(sql, (err, results) => {
             if (err) {
                 res.json({ success: false, message: err });
