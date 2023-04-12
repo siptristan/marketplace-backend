@@ -1,6 +1,7 @@
 const db = require('../config/database')
 const modelCart = require('../model/cart_model')
 const modelCheckout = require('../model/checkout_model')
+//@ts-ignore
 const base64Img = require('base64-img')
 
 module.exports = {
