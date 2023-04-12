@@ -12,7 +12,7 @@ module.exports = {
 
     },
     updatePaymentProof: (data) => {
-        return `UPDATE checkouts SET PaymentProof = ${data.PaymentProof} WHERE CheckoutID = ${data.CheckoutID}`
+        return `UPDATE checkouts SET PaymentProof = '${data.PaymentProof}' WHERE CheckoutID = ${data.CheckoutID}`
     },
     confrimPayment: (id) => {
         return `UPDATE checkouts SET IsPaid = 1 WHERE CheckoutID = ${id}`
