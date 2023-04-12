@@ -52,6 +52,7 @@ module.exports = {
         })
     },
     uploadPaymentProof: (req, res) => {
+        console.log(req.body)
         const base64Data = req.body.base64Img;
         const destpath = 'public/images';
         const filename = `${req.body.UserID}_${req.body.date}`;
