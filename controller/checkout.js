@@ -3,6 +3,7 @@ const modelCart = require('../model/cart_model')
 const modelCheckout = require('../model/checkout_model')
 //@ts-ignore
 const base64Img = require('base64-img')
+const fs = require('fs')
 
 module.exports = {
     addCheckout: async(req, res) => {
@@ -54,11 +55,17 @@ module.exports = {
     uploadPaymentProof: (req, res) => {
         console.log(req.body)
         const base64Data = req.body.base64Img;
-        const destpath = 'public/images';
+        const destpath = `public/images/payment/${req.body.UserID}`;
+
+        if (!fs.existsSync(destpath)){
+            fs.mkdirSync(destpath, { recursive: true });
+        }
+
         const filename = `${req.body.UserID}_${req.body.date}`;
         const filepath = base64Img.imgSync(base64Data, destpath, filename);
         const path = filepath.split(/\\/)
-        const pathString = `${path[0]}/${path[1]}/${path[2]}`
+        const pathString = `${path[0]}/${path[1]}/${path[2]}/${path[3]}/${path[4]}`
+        
         
         const data = {
             PaymentProof: base64Data,
