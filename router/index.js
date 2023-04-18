@@ -9,6 +9,7 @@ const auth = require('../controller/user')
 router.get('/api/products', product.getProducts)
 router.get('/api/categories', product.getCategories)
 router.get('/api/product-detail', product.getProductById)
+router.post('/api/add-product', product.addProduct)
 
 // router cart
 router.post('/api/add-cart', cart.addCart)
