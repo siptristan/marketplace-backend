@@ -3,6 +3,7 @@ const modelProduct = require('../model/product_model')
 const modelCart = require('../model/cart_model')
 const modelCheckout = require('../model/checkout_model')
 const fs = require('fs')
+const base64Img = require('base64-img')
 
 module.exports = {
     getProducts: async(req, res) => {
