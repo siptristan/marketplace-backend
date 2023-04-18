@@ -2,6 +2,7 @@ const db = require('../config/database')
 const modelProduct = require('../model/product_model')
 const modelCart = require('../model/cart_model')
 const modelCheckout = require('../model/checkout_model')
+const fs = require('fs')
 
 module.exports = {
     getProducts: async(req, res) => {
