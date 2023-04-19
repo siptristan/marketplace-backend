@@ -36,7 +36,7 @@ module.exports = {
         //     fs.mkdirSync(destpath, { recursive: true });
         // }
 
-        const filename = `${req.body.UserID}_${req.body.Date}`;
+        const filename = `${req.body.Slug}`;
         const filepath = base64Img.imgSync(base64Data, destpath, filename);
         const path = filepath.split(/\\/)
         const pathString = `${path[0]}/${path[1]}/${path[2]}/${path[3]}/${path[4]}`
