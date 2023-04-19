@@ -40,8 +40,9 @@ module.exports = {
         const filepath = base64Img.imgSync(base64Data, destpath, filename);
         const path = filepath.split(/\\/)
         const pathString = `${path[0]}/${path[1]}/${path[2]}/${path[3]}/${path[4]}`
+        console.log(pathString)
         
-        let sql = modelProduct.addProduct(req.body)
+        let sql = modelProduct.addProduct(req.body, pathString)
         let query = db.query(sql, (err, results) => {
             if (err) {
                 res.json({ success: false, message: err });
