@@ -10,6 +10,6 @@ module.exports = {
         return `SELECT p.*, c.CategoryID, c.CategoryName FROM products p JOIN categories c ON p.CategoryID = c.CategoryID WHERE Slug = '${slug}'`;
     },
     addProduct: (data) => {
-        return `INSERT INTO products(CategoryID,UserID,Title,Price,Stock,Discount,Description,Slug,Image,IsDiscount,IsDeleted) VALUES(${data.CategoryID}, ${data.UserID}, '${data.Title}', ${data.Price}, ${data.Stock}, ${data.Discount}, '${data.Description}', '${data.Slug}', '${data.Image}', ${data.IsDiscount}, ${data.IsDeleted})`
+        return `INSERT INTO products(CategoryID,UserID,Title,Price,Stock,Discount,Description,Slug,Image,IsDiscount,IsDeleted) VALUES(${data.CategoryID}, ${data.UserID}, '${data.Title}', ${data.Price}, ${data.Stock}, ${data.Discount}, '${data.Description}', '${data.Slug}', '${data.base64Img}', ${data.IsDiscount}, ${data.IsDeleted})`
     }
 }
