@@ -36,11 +36,11 @@ module.exports = {
             fs.mkdirSync(destpath, { recursive: true });
         }
 
-        const filename = `${req.body.UserID}_${req.body.date}`;
+        const filename = `${req.body.UserID}`;
         const filepath = base64Img.imgSync(base64Data, destpath, filename);
         const path = filepath.split(/\\/)
         const pathString = `${path[0]}/${path[1]}/${path[2]}/${path[3]}/${path[4]}`
-        console.log(pathString)
+        console.log(filepath)
         
         let sql = modelProduct.addProduct(req.body, pathString)
         let query = db.query(sql, (err, results) => {
