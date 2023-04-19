@@ -35,6 +35,7 @@ app.use(cors({
   methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH'],
   origin: '*'
 }))
+app.use(express.static(path.join(__dirname, 'public')));
 app.use(router);
 
 //route untuk login
