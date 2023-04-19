@@ -32,9 +32,9 @@ module.exports = {
         const base64Data = req.body.base64Img;
         const destpath = `public/images/product/${req.body.UserID}`;
 
-        if (!fs.existsSync(destpath)){
-            fs.mkdirSync(destpath, { recursive: true });
-        }
+        // if (!fs.existsSync(destpath)){
+        //     fs.mkdirSync(destpath, { recursive: true });
+        // }
 
         const filename = `${req.body.UserID}`;
         const filepath = base64Img.imgSync(base64Data, destpath, filename);
@@ -42,7 +42,7 @@ module.exports = {
         const pathString = `${path[0]}/${path[1]}/${path[2]}/${path[3]}/${path[4]}`
         console.log(filepath)
         
-        let sql = modelProduct.addProduct(req.body, pathString)
+        let sql = modelProduct.addProduct(req.body, filepath)
         let query = db.query(sql, (err, results) => {
             if (err) {
                 res.json({ success: false, message: err });
