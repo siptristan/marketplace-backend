@@ -42,7 +42,7 @@ module.exports = {
         const pathString = `${path[0]}/${path[1]}/${path[2]}/${path[3]}/${path[4]}`
         console.log(filepath)
         
-        let sql = modelProduct.addProduct(req.body, filepath)
+        let sql = modelProduct.addProduct(req.body, filepath.replace('public/',''))
         let query = db.query(sql, (err, results) => {
             if (err) {
                 res.json({ success: false, message: err });
