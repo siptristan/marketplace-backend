@@ -6,7 +6,7 @@ module.exports = {
         return `UPDATE checkouts SET TotalPrice = ${TotalPrice}, TotalProduct = ${TotalBuy} WHERE CheckoutID = ${CheckoutID}`
     },
     checkout: (ProductID, UserID) => {
-        return `SELECT c.* FROM checkouts c WHERE c.UserID = ${UserID} AND c.ProductID = ${ProductID} AND c.IsDeleted = 0 AND c.IsPaid = 0 AND c.PaymentProof != null`;
+        return `SELECT c.* FROM checkouts c WHERE c.UserID = ${UserID} AND c.ProductID = ${ProductID} AND c.IsDeleted = 0 AND c.IsPaid = 0 AND c.PaymentProof = null`;
     },
     checkoutAll: (UserID, ProductID) => {
         return `SELECT c.*, p.Title, p.Image, p.Price FROM checkouts c JOIN products p ON c.ProductID = p.ProductID WHERE c.UserID = ${UserID} AND c.ProductID IN (${ProductID}) AND c.IsDeleted = 0`;
