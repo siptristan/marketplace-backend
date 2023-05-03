@@ -89,5 +89,12 @@ module.exports = {
                 return res.json({success: true, message: 'success'})
             }
         })
-    }
+    },
+    checkoutAllAdmin: async(req, res) => {
+        let sql = modelCheckout.listCheckoutAdmin(req.query.UserID);
+        let query = db.query(sql, (error, result) => {
+            if(error) throw error;
+            return res.json(result)
+        })
+    },
 }

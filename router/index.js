@@ -18,6 +18,7 @@ router.post('/api/remove-cart', cart.removeCart)
 
 // router checkout
 router.get('/api/get-all-checkout', checkout.checkoutAll)
+router.get('/api/get-checkout-admin', checkout.checkoutAllAdmin)
 router.post('/api/add-checkout', checkout.addCheckout)
 router.post('/api/get-checkout', checkout.checkout)
 router.post('/api/upload-payment-proof', checkout.uploadPaymentProof)

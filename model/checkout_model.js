@@ -14,6 +14,9 @@ module.exports = {
     listCheckout: (UserID) => {
         return `SELECT c.*, p.Title, p.Image, p.Price, c2.CategoryName FROM checkouts c JOIN products p ON c.ProductID = p.ProductID JOIN categories c2 ON p.CategoryID = c2.CategoryID WHERE c.UserID = ${UserID} AND c.IsDeleted = 0`
     },
+    listCheckoutAdmin: (UserID) => {
+        return `SELECT c.*, p.Title, p.Image, p.Price, c2.CategoryName FROM checkouts c JOIN products p ON c.ProductID = p.ProductID JOIN categories c2 ON p.CategoryID = c2.CategoryID WHERE c.ProductID IN (SELECT ProductID FROM products WHERE UserID = ${UserID}) AND c.IsDeleted = 0`
+    },
     removeCheckout: (UserID, ProductID) => {
 
     },
