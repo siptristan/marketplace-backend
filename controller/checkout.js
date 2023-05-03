@@ -41,6 +41,7 @@ module.exports = {
     checkout: async(req, res) => {
         let sql = modelCheckout.checkout(req.body.UserID, req.body.ProductID);
         let query = db.query(sql, (error, result) => {
+            console.log(result)
             if(error) throw error;
             return res.json(result);
         })
