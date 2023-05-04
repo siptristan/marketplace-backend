@@ -24,8 +24,6 @@ module.exports = {
                 const token = jwt.sign({ data }, jwtSecretKey, { expiresIn: process.env.JWT_ACCESS_TOKEN_EXPIRED });
                 
                 return res.json({ user: results[0], token })
-                } else {
-                console.log(check)
                 }
             })
             .catch(err => console.error(err.message))
@@ -36,7 +34,6 @@ module.exports = {
         // Due to security reasons.
     
         let jwtSecretKey = process.env.JWT_SECRET_KEY;
-        console.log(jwtSecretKey)
         try {
             const token = req.getHeader('Authorization')
       
@@ -68,7 +65,6 @@ module.exports = {
         const Name = req.body.Name
         const Email = req.body.Email
         const Avatar = req.body.Avatar
-        console.log(req.body)
         const saltRounds = 10
         let hashPass = ''
         bcrypt

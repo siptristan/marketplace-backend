@@ -7,7 +7,6 @@ const base64Img = require('base64-img')
 
 module.exports = {
     getProducts: async(req, res) => {
-        console.log(req.query.UserID)
         let sql = modelProduct.product(req.query.UserID);
         let query = db.query(sql, (err, results) => {
             if(err) throw err;
@@ -40,7 +39,6 @@ module.exports = {
         const filepath = base64Img.imgSync(base64Data, destpath, filename);
         const path = filepath.split(/\\/)
         const pathString = `${path[0]}/${path[1]}/${path[2]}/${path[3]}/${path[4]}`
-        console.log(filepath)
         
         let sql = modelProduct.addProduct(req.body, filepath.replace('public/',''))
         let query = db.query(sql, (err, results) => {

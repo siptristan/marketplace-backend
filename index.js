@@ -87,5 +87,4 @@ app.use(router);
 
 //server listening
 app.listen(PORT, () => {
-  console.log(`Server is running at port ${PORT}`);
 });

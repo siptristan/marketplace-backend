@@ -41,7 +41,6 @@ module.exports = {
     checkout: async(req, res) => {
         let sql = modelCheckout.checkoutAll(req.body.UserID, req.body.ProductID);
         let query = db.query(sql, (error, result) => {
-            console.log(result)
             if(error) throw error;
             return res.json(result);
         })
@@ -54,13 +53,12 @@ module.exports = {
         })
     },
     uploadPaymentProof: (req, res) => {
-        console.log(req.body)
         const base64Data = req.body.base64Img;
-        const destpath = `public/images/payment/${req.body.UserID}`;
+        const destpath = `images/payment/${req.body.UserID}`;
 
-        if (!fs.existsSync(destpath)){
-            fs.mkdirSync(destpath, { recursive: true });
-        }
+        // if (!fs.existsSync(destpath)){
+        //     fs.mkdirSync(destpath, { recursive: true });
+        // }
 
         const filename = `${req.body.UserID}_${req.body.date}`;
         const filepath = base64Img.imgSync(base64Data, destpath, filename);
